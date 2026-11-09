@@ -1,0 +1,17 @@
+{
+  "name": "أكاديمية القرآن بتل حوين",
+  "short_name": "أكاديمية القرآن",
+  "description": "مواقيت الصلاة وتنبيهها، أذكار الصباح والمساء، السبحة، ومتابعة وردك من المصحف. مجاني بالكامل، صدقة جارية.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "dir": "rtl",
+  "lang": "ar",
+  "orientation": "portrait",
+  "background_color": "#0F3A33",
+  "theme_color": "#0F3A33",
+  "icons": [
+    {"src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable"},
+    {"src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}
+  ]
+}

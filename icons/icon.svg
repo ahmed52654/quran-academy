@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1B5C51"/><stop offset="1" stop-color="#0B2E28"/></linearGradient>
+    <linearGradient id="gd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F3DCA6"/><stop offset="1" stop-color="#B5852E"/></linearGradient>
+  </defs>
+  <rect width="512" height="512" fill="url(#bg)"/>
+  <path d="M128 420 V240 C128 160 190 110 256 80 C322 110 384 160 384 240 V420" fill="none" stroke="url(#gd)" stroke-width="18" stroke-linecap="round"/>
+  <!-- star -->
+  <path d="M256 128 l10 18 20 -5 -5 20 18 10 -18 10 5 20 -20 -5 -10 18 -10 -18 -20 5 5 -20 -18 -10 18 -10 -5 -20 20 5z" fill="url(#gd)"/>
+  <!-- open book -->
+  <path d="M256 258 C226 236 186 230 152 236 V346 C186 340 226 346 256 368 Z" fill="#F3DCA6"/>
+  <path d="M256 258 C286 236 326 230 360 236 V346 C326 340 286 346 256 368 Z" fill="#E2C17E"/>
+  <path d="M256 258 V368" stroke="#8C6421" stroke-width="5"/>
+  <g stroke="#B5852E" stroke-width="5" stroke-linecap="round" opacity=".75">
+    <path d="M176 262 C200 258 220 262 238 272"/><path d="M176 286 C200 282 220 286 238 296"/><path d="M176 310 C200 306 220 310 238 320"/>
+    <path d="M336 262 C312 258 292 262 274 272"/><path d="M336 286 C312 282 292 286 274 296"/><path d="M336 310 C312 306 292 310 274 320"/>
+  </g>
+  <!-- rehal stand -->
+  <path d="M176 412 L336 360 M336 412 L176 360" stroke="url(#gd)" stroke-width="16" stroke-linecap="round"/>
+</svg>
