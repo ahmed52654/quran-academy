@@ -1,5 +1,5 @@
 // عند أي تعديل على الملفات غيّر رقم الإصدار (v1 ← v2) حتى يصل التحديث للمستخدمين
-const CACHE = 'quran-academy-v2';
+const CACHE = 'quran-academy-v4';
 const SHELL = ['./', './index.html', './manifest.webmanifest', './icons/icon.svg', './icons/icon-192.png', './icons/icon-512.png', './icons/apple-touch-icon.png'];
 
 self.addEventListener('install', e => {
@@ -14,6 +14,8 @@ self.addEventListener('fetch', e => {
   const req = e.request;
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
+  // ملفات الصوت تُترك للمتصفح مباشرة (التشغيل يحتاج طلبات جزئية)
+  if (req.destination === 'audio' || req.headers.has('range') || url.pathname.endsWith('.mp3')) return;
   // الصفحة: من الشبكة أولاً، وبدون نت من النسخة المحفوظة
   if (req.mode === 'navigate') {
     e.respondWith(fetch(req).then(r => { const c = r.clone(); caches.open(CACHE).then(x => x.put('./index.html', c)); return r; })

@@ -171,7 +171,7 @@ select,input[type=number],input[type=time],input[type=text],input[type=password]
 .zikr{display:block;width:100%;text-align:right;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:18px 18px 14px;margin-top:12px;transition:opacity .25s,transform .1s}
 .zikr:active{transform:scale(.99)}
 .zikr .tx{font-family:var(--f-text);font-size:21px;line-height:2;white-space:pre-line}
-.zikr .ay{display:inline-block;width:.55em;height:.55em;border:1.5px solid var(--gold);border-radius:50%;margin:0 .3em;vertical-align:middle}
+.zikr .ay{display:inline-flex;align-items:center;justify-content:center;min-width:1.55em;height:1.55em;padding:0 .2em;border:1.5px solid var(--gold);border-radius:99px;margin:0 .25em;vertical-align:middle;font-family:var(--f-ui);font-size:.62em;font-weight:500;color:var(--gold);line-height:1}
 .zikr .ft{display:flex;align-items:center;justify-content:space-between;margin-top:10px;font-size:13.5px;color:var(--muted)}
 .zikr .ctr{min-width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:var(--green2);color:#fff;font-size:20px;font-weight:600}
 .zikr.done{opacity:.55}
@@ -208,6 +208,42 @@ select,input[type=number],input[type=time],input[type=text],input[type=password]
 .stats div{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px;text-align:center}
 .stats b{display:block;font-size:26px;font-weight:600}
 .stats span{font-size:13px;color:var(--muted)}
+
+/* qibla */
+.qb{display:flex;flex-direction:column;align-items:center;text-align:center;padding-top:6px}
+.qb .deg{font-size:46px;font-weight:300;line-height:1.1;margin-top:6px}
+.qb .hint{color:var(--muted);font-size:14.5px;margin:4px 0 0;max-width:340px;line-height:1.7}
+.dialw{position:relative;width:min(300px,80vw);aspect-ratio:1;margin:22px auto 8px}
+.dial{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 50% 40%,var(--green2),var(--green));box-shadow:0 14px 34px rgba(15,58,51,.3),inset 0 0 0 6px rgba(233,201,135,.25);transition:transform .25s ease-out}
+.dial::after{content:"";position:absolute;inset:0;border-radius:50%;background:var(--pattern);opacity:.08}
+.dial .tick{position:absolute;left:50%;top:0;width:2px;height:50%;margin-left:-1px;transform-origin:50% 100%}
+.dial .tick::before{content:"";display:block;width:2px;height:10px;margin-top:10px;background:rgba(255,255,255,.35)}
+.dial .tick.mj::before{height:16px;width:3px;margin-left:-.5px;background:rgba(255,255,255,.7)}
+.dial .lab{position:absolute;left:50%;top:50%;width:30px;height:30px;margin:-15px 0 0 -15px;display:grid;place-items:center;color:#fff;font-size:14px;font-weight:600}
+.dial .lab.n{color:#F08A6F}
+.dial .kaaba{position:absolute;left:50%;top:0;width:0;height:50%;transform-origin:50% 100%;z-index:2}
+.dial .kaaba span{position:absolute;top:-6px;left:-22px;width:44px;height:44px;border-radius:12px;background:var(--gold);display:grid;place-items:center;box-shadow:0 4px 12px rgba(0,0,0,.35)}
+.dial .kaaba span svg{width:26px;height:26px}
+.dial .kaaba i{position:absolute;top:44px;left:-1.5px;width:3px;height:calc(100% - 64px);background:linear-gradient(var(--gold-hi),transparent);border-radius:2px}
+.dialw .pin{position:absolute;left:50%;top:-14px;margin-left:-10px;width:0;height:0;border:10px solid transparent;border-top:14px solid var(--ink);z-index:3}
+.dialw .hub{position:absolute;left:50%;top:50%;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:var(--gold-hi);z-index:3}
+.qb.on .dial{box-shadow:0 0 0 6px var(--gold),0 14px 34px rgba(15,58,51,.3)}
+.qbadge{display:inline-block;margin-top:10px;padding:6px 16px;border-radius:99px;background:var(--ok);color:#fff;font-weight:500;font-size:14.5px}
+
+/* adhan overlay */
+.adhan{position:fixed;inset:0;z-index:20;background:var(--green);color:var(--on-green);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+  padding:calc(30px + env(safe-area-inset-top,0px)) 26px calc(30px + env(safe-area-inset-bottom,0px))}
+.adhan::before{content:"";position:absolute;inset:0;background:var(--pattern);opacity:.09;pointer-events:none}
+.adhan > *{position:relative}
+.adhan .lbl{opacity:.75;font-size:15px}
+.adhan .nm{font-family:var(--f-text);font-weight:700;font-size:64px;line-height:1.2;margin:4px 0}
+.adhan .wave{display:flex;gap:5px;height:34px;align-items:center;margin:14px 0 22px}
+.adhan .wave i{width:5px;border-radius:3px;background:var(--gold-hi);animation:wv 1.1s ease-in-out infinite}
+.adhan .wave i:nth-child(2){animation-delay:.15s}.adhan .wave i:nth-child(3){animation-delay:.3s}.adhan .wave i:nth-child(4){animation-delay:.45s}.adhan .wave i:nth-child(5){animation-delay:.6s}
+@keyframes wv{0%,100%{height:8px}50%{height:32px}}
+.adhan .dua{font-family:var(--f-text);font-size:19px;line-height:1.9;max-width:420px;opacity:.9;margin:0 0 26px}
+.adhan .dua small{display:block;font-family:var(--f-ui);font-size:13px;opacity:.7;margin-bottom:4px}
+.adhan .btn{min-width:200px;background:var(--gold);border-color:var(--gold);color:#fff}
 
 /* profile */
 .prof{position:relative;overflow:hidden;background:var(--green);color:var(--on-green);border-radius:24px;padding:22px;display:flex;align-items:center;gap:16px}
@@ -395,6 +431,26 @@ select,input[type=number],input[type=time],input[type=text],input[type=password]
     </div>
   </section>
 
+  <!-- ===== Qibla ===== -->
+  <section class="view" id="v-qibla">
+    <div class="qb" id="qb">
+      <div class="deg num" id="qDeg">—</div>
+      <p class="hint" id="qHint"></p>
+      <div class="dialw">
+        <span class="pin" aria-hidden="true"></span>
+        <div class="dial" id="dial" aria-hidden="true"></div>
+        <span class="hub"></span>
+      </div>
+      <div id="qOk" class="qbadge hidden">أنت الآن في اتجاه القبلة</div>
+      <button class="btn primary mt" id="qStart" data-act="compass">تشغيل البوصلة</button>
+      <p class="note" id="qInfo"></p>
+      <div class="card" style="width:100%;text-align:right">
+        <h3>نصائح لدقة أكبر</h3>
+        <p>أمسك الجوال مستوياً على كفّك، وابتعد عن الحديد والأجهزة الكهربائية. لو كان الاتجاه يتغير بشكل غريب، حرّك الجوال في الهواء على شكل رقم ٨ عدة مرات لمعايرة البوصلة.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== Account ===== -->
   <section class="view" id="v-me">
     <div class="prof"><div class="av" id="pAv"></div><div><b id="pName"></b><span id="pUser"></span></div></div>
@@ -425,7 +481,10 @@ select,input[type=number],input[type=time],input[type=text],input[type=password]
     <div class="card">
       <h3>التنبيهات</h3>
       <div class="switch"><span>تنبيه عند دخول وقت الصلاة</span><input type="checkbox" id="sNotify"></div>
-      <div class="switch"><span>صوت التنبيه</span><input type="checkbox" id="sSound"></div>
+      <label class="field"><span>صوت دخول الوقت</span>
+        <select id="sSound"><option value="adhan">الأذان كاملاً</option><option value="chime">نغمة قصيرة</option><option value="none">بدون صوت</option></select>
+      </label>
+      <button class="btn block mt" data-act="previewAdhan">استمع للأذان</button>
       <label class="field"><span>تنبيه قبل الأذان</span>
         <select id="sPre"><option value="0">بدون</option><option value="5">قبل ٥ دقائق</option><option value="10">قبل ١٠ دقائق</option><option value="15">قبل ١٥ دقيقة</option></select>
       </label>
@@ -480,12 +539,23 @@ select,input[type=number],input[type=time],input[type=text],input[type=password]
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5h7a3 3 0 0 1 3 3v12a2 2 0 0 0-2-2H2zM22 5h-7a3 3 0 0 0-3 3v12a2 2 0 0 1 2-2h8z"/></svg>
       وردي
     </button>
+    <button data-v="qibla">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg>
+      القبلة
+    </button>
     <button data-v="me">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
       حسابي
     </button>
   </div>
 </nav>
+</div>
+<div class="adhan hidden" id="adhanBox" role="dialog" aria-live="assertive">
+  <div class="lbl" id="adhanLbl">حان الآن موعد أذان</div>
+  <div class="nm" id="adhanName"></div>
+  <div class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+  <p class="dua"><small>الدعاء بعد الأذان</small>اللهم ربَّ هذه الدعوة التامة، والصلاة القائمة، آتِ محمداً الوسيلة والفضيلة، وابعثه مقاماً محموداً الذي وعدته.</p>
+  <button class="btn" id="adhanStop">إيقاف الأذان</button>
 </div>
 <div class="toast" id="toast"></div>
 
@@ -540,7 +610,7 @@ function defaults(){
   return {
     loc:null, method:'auto', asr:1, adj:{fajr:0,dhuhr:0,asr:0,maghrib:0,isha:0},
     bells:{fajr:true,dhuhr:true,asr:true,maghrib:true,isha:true},
-    notify:false, sound:true, pre:0, theme:'auto',
+    notify:false, sound:true, soundMode:'adhan', pre:0, theme:'auto',
     adhkar:{date:'',m:{},e:{}},
     tsb:{i:0,count:0,goal:33,total:0},
     wird:{ppd:4,page:1,khatmas:0,last:'',days:[],remind:false,time:'21:00',prev:null},
@@ -913,9 +983,9 @@ function renderTodo(){
 
 /* ================= NOTIFICATIONS ================= */
 let audioCtx = null;
-function unlockAudio(){ if (!audioCtx){ try { audioCtx = new (window.AudioContext||window.webkitAudioContext)(); } catch(e){} } }
+function unlockAudio(){ unlockAdhan(); if (!audioCtx){ try { audioCtx = new (window.AudioContext||window.webkitAudioContext)(); } catch(e){} } }
 function chime(){
-  if (!S.sound || !audioCtx) return;
+  if ((S.soundMode||'chime')==='none' || !S.sound || !audioCtx) return;
   try{
     if (audioCtx.state==='suspended') audioCtx.resume();
     const t0 = audioCtx.currentTime;
@@ -927,8 +997,44 @@ function chime(){
     });
   }catch(e){}
 }
-async function notify(title, body, tag){
-  chime();
+/* ---------- full adhan audio ---------- */
+// ضع ملفات الصوت في مجلد audio: adhan.mp3 لكل الصلوات، و adhan-fajr.mp3 للفجر (اختياري)
+const ADHAN_SRC = {def:'audio/adhan.mp3', fajr:'audio/adhan-fajr.mp3'};
+let adhanAudio = null, audioUnlocked = false;
+function unlockAdhan(){
+  if (audioUnlocked) return; audioUnlocked = true;
+  try {
+    adhanAudio = new Audio(); adhanAudio.preload = 'none';
+    adhanAudio.src = ADHAN_SRC.def; adhanAudio.muted = true;
+    const p = adhanAudio.play();
+    if (p && p.then) p.then(()=>{ adhanAudio.pause(); adhanAudio.currentTime = 0; adhanAudio.muted = false; }).catch(()=>{ adhanAudio.muted = false; });
+  } catch(e){}
+}
+function stopAdhan(){
+  if (adhanAudio){ try { adhanAudio.pause(); adhanAudio.currentTime = 0; } catch(e){} }
+  $('#adhanBox').classList.add('hidden');
+}
+function playAdhan(k, name, preview){
+  if (!adhanAudio){ try { adhanAudio = new Audio(); } catch(e){ chime(); return; } }
+  const a = adhanAudio;
+  $('#adhanLbl').textContent = preview ? 'معاينة صوت الأذان' : (name==='الجمعة' ? 'حان الآن موعد صلاة' : 'حان الآن موعد أذان');
+  $('#adhanName').textContent = name;
+  $('#adhanBox').classList.remove('hidden');
+  let triedDef = (k !== 'fajr');
+  a.onended = ()=> $('#adhanBox').classList.add('hidden');
+  a.onerror = ()=>{
+    if (!triedDef){ triedDef = true; a.src = ADHAN_SRC.def; a.play().catch(fail); return; }
+    fail();
+  };
+  function fail(){ $('#adhanBox').classList.add('hidden'); chime(); if (preview) toast('ملف الأذان غير موجود بعد، ضعه في مجلد audio باسم adhan.mp3'); }
+  a.muted = false; a.src = (k==='fajr') ? ADHAN_SRC.fajr : ADHAN_SRC.def;
+  const p = a.play(); if (p && p.catch) p.catch(e=>{ if (e && e.name==='NotAllowedError'){ $('#adhanBox').classList.add('hidden'); chime(); } });
+}
+$('#adhanStop').addEventListener('click', stopAdhan);
+
+async function notify(title, body, tag, opt2){
+  if (opt2 && opt2.adhan && (S.soundMode||'adhan')==='adhan' && !document.hidden) playAdhan(opt2.adhan, opt2.name);
+  else chime();
   if (navigator.vibrate) navigator.vibrate([200,100,200]);
   if (!('Notification' in window) || Notification.permission!=='granted'){ toast(title + '، ' + body); return; }
   const opt = {body, tag, icon:'icons/icon-192.png', badge:'icons/icon-192.png', lang:'ar', dir:'rtl', renotify:true};
@@ -946,7 +1052,7 @@ function checkAlerts(now){
     for (const k of FIVE){
       if (!S.bells[k]) continue;
       const t = TODAY.times[k], nm = prName(k,t), d = now - t;
-      if (d >= 0 && d < W) fire(TODAY.key+k, ()=>notify('حان الآن موعد صلاة ' + nm, 'حسب توقيت ' + S.loc.name, 'p-'+k));
+      if (d >= 0 && d < W) fire(TODAY.key+k, ()=>notify('حان الآن موعد صلاة ' + nm, 'حسب توقيت ' + S.loc.name, 'p-'+k, {adhan:k, name:nm}));
       if (S.pre > 0){
         const dp = now - (t - S.pre*60000);
         if (dp >= 0 && dp < W) fire(TODAY.key+k+'pre', ()=>notify('بقي ' + ar(S.pre) + ' دقائق على ' + (nm==='الجمعة'?'صلاة الجمعة':'أذان ' + nm), 'استعد للصلاة', 'pre-'+k));
@@ -980,7 +1086,7 @@ function renderHeader(){
 
 /* ================= ADHKAR ================= */
 const ADHKAR = [
-  {n:1, both:'أعوذ بالله من الشيطان الرجيم\nاللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۗ مَن ذَا الَّذِي يَشْفَعُ عِندَهُ إِلَّا بِإِذْنِهِ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلَّا بِمَا شَاءَ ۚ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ ۖ وَلَا يَئُودُهُ حِفْظُهُمَا ۚ وَهُوَ الْعَلِيُّ الْعَظِيمُ', note:'آية الكرسي'},
+  {n:1, both:'أعوذ بالله من الشيطان الرجيم\nاللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۗ مَن ذَا الَّذِي يَشْفَعُ عِندَهُ إِلَّا بِإِذْنِهِ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلَّا بِمَا شَاءَ ۚ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ ۖ وَلَا يَئُودُهُ حِفْظُهُمَا ۚ وَهُوَ الْعَلِيُّ الْعَظِيمُ', note:'آية الكرسي', ayn:255},
   {n:3, both:'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ\nقُلْ هُوَ اللَّهُ أَحَدٌ ۝ اللَّهُ الصَّمَدُ ۝ لَمْ يَلِدْ وَلَمْ يُولَدْ ۝ وَلَمْ يَكُن لَّهُ كُفُوًا أَحَدٌ', note:'سورة الإخلاص'},
   {n:3, both:'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ\nقُلْ أَعُوذُ بِرَبِّ الْفَلَقِ ۝ مِن شَرِّ مَا خَلَقَ ۝ وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ ۝ وَمِن شَرِّ النَّفَّاثَاتِ فِي الْعُقَدِ ۝ وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ', note:'سورة الفلق'},
   {n:3, both:'بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ\nقُلْ أَعُوذُ بِرَبِّ النَّاسِ ۝ مَلِكِ النَّاسِ ۝ إِلَٰهِ النَّاسِ ۝ مِن شَرِّ الْوَسْوَاسِ الْخَنَّاسِ ۝ الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ ۝ مِنَ الْجِنَّةِ وَالنَّاسِ', note:'سورة الناس'},
@@ -1009,9 +1115,17 @@ const ADHKAR = [
   {n:100, m:'أستغفر الله وأتوب إليه.'},
   {n:10, both:'اللهم صلِّ وسلم على نبينا محمد.'}
 ];
+// يرقّم الآيات: السور القصيرة (الآيات مفصولة بـ ۝) وآية الكرسي (رقمها ٢٥٥)
+const ayMark = n => `<span class="ay">${ar(n)}</span>`;
+function quranHtml(z){
+  if (z.ayn) return z.tx + ' ' + ayMark(z.ayn);
+  if (z.tx.indexOf('۝') < 0) return z.tx;
+  const nl = z.tx.indexOf('\n'), head = nl >= 0 ? z.tx.slice(0, nl+1) : '', body = nl >= 0 ? z.tx.slice(nl+1) : z.tx;
+  return head + body.split(' ۝ ').map((v,i)=> v + ' ' + ayMark(i+1)).join(' ');
+}
 const timesWord = n => n===1 ? 'مرة واحدة' : n===2 ? 'مرتان' : (n>=3 && n<=10) ? ar(n)+' مرات' : ar(n)+' مرة';
 let adMode = null;
-const adList = mode => ADHKAR.map((z,i)=>({id:i, n:z.n, note:z.note, tx: z.both || z[mode]})).filter(z=>z.tx);
+const adList = mode => ADHKAR.map((z,i)=>({id:i, n:z.n, note:z.note, ayn:z.ayn, tx: z.both || z[mode]})).filter(z=>z.tx);
 function ensureAdhkarDay(){ const k = ymdAt(new Date()).key; if (S.adhkar.date !== k){ S.adhkar = {date:k, m:{}, e:{}}; save(); } }
 function defaultMode(){
   if (S.loc && TODAY){ const now = new Date(); return (now >= TODAY.times.asr || now < TODAY.times.fajr) ? 'e' : 'm'; }
@@ -1028,7 +1142,7 @@ function renderAdhkar(){
   let done = 0;
   $('#adList').innerHTML = list.map(z=>{
     const left = Math.max(0, z.n - (cnt[z.id]||0)); if (!left) done++;
-    return `<button class="zikr ${left?'':'done'}" data-z="${z.id}"><div class="tx">${z.tx.replace(/ ۝ /g,' <span class="ay"></span> ')}</div>
+    return `<button class="zikr ${left?'':'done'}" data-z="${z.id}"><div class="tx">${quranHtml(z)}</div>
       <div class="ft"><span>${z.note ? z.note + '، ' : ''}${timesWord(z.n)}</span><span class="ctr"><span class="num">${ar(left)}</span></span></div></button>`;
   }).join('') + (done===list.length ? `<div class="finish">${adMode==='m'?'أتممت أذكار الصباح':'أتممت أذكار المساء'}، تقبّل الله منك</div>` : '');
   $('#adBar').style.width = (done/list.length*100) + '%';
@@ -1120,6 +1234,86 @@ function wirdDone(){
 }
 function wirdUndo(){ const w = S.wird; if (!w.prev) return; Object.assign(w, w.prev); w.prev = null; save(); renderWird(); toast('تم التراجع'); }
 
+/* ================= QIBLA ================= */
+const KAABA = {lat:21.4225, lng:39.8262};
+function qiblaInfo(){
+  const f1 = S.loc.lat*D2R, f2 = KAABA.lat*D2R, dl = (KAABA.lng - S.loc.lng)*D2R;
+  const brg = (Math.atan2(Math.sin(dl)*Math.cos(f2), Math.cos(f1)*Math.sin(f2) - Math.sin(f1)*Math.cos(f2)*Math.cos(dl))*R2D + 360) % 360;
+  const a = Math.sin((f2-f1)/2)**2 + Math.cos(f1)*Math.cos(f2)*Math.sin(dl/2)**2;
+  const km = 6371 * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+  return {brg, km};
+}
+let QB = null, heading = null, compassOn = false, wasAligned = false;
+function buildDial(){
+  const d = $('#dial'); if (d.dataset.built) return;
+  let h = '';
+  for (let i=0;i<360;i+=15) h += `<span class="tick ${i%90===0?'mj':''}" style="transform:rotate(${i}deg)"></span>`;
+  [['ش',0,'n'],['ق',90,''],['ج',180,''],['غ',270,'']].forEach(([t,a,c])=>{
+    const r = 36, x = Math.sin(a*D2R)*r, y = -Math.cos(a*D2R)*r;
+    h += `<span class="lab ${c}" style="left:${50+x}%;top:${50+y}%">${t}</span>`;
+  });
+  h += `<span class="kaaba" id="kaaba"><span><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="1.5" fill="#1b1b1b"/><rect x="4" y="8.5" width="16" height="2.4" fill="#E9C987"/><rect x="10" y="13" width="4" height="7" fill="#E9C987" opacity=".85"/></svg></span><i></i></span>`;
+  d.innerHTML = h; d.dataset.built = '1';
+}
+function renderQibla(){
+  buildDial();
+  if (!S.loc){
+    $('#qDeg').textContent = '—'; $('#qHint').textContent = 'اختر مدينتك أولاً من صفحة «حسابي» أو استخدم موقعك، حتى نحدد اتجاه القبلة.';
+    $('#qStart').classList.add('hidden'); $('#qInfo').textContent = ''; return;
+  }
+  QB = qiblaInfo();
+  $('#kaaba').style.transform = `rotate(${QB.brg}deg)`;
+  $('#qStart').classList.toggle('hidden', compassOn);
+  $('#qInfo').textContent = 'المسافة إلى مكة المكرمة حوالي ' + ar(Math.round(QB.km).toLocaleString('en-US')) + ' كم، من ' + S.loc.name + '.';
+  updateQibla();
+}
+function updateQibla(){
+  if (!QB) return;
+  if (heading == null){
+    $('#dial').style.transform = 'rotate(0deg)';
+    $('#qDeg').textContent = ar(Math.round(QB.brg)) + '°';
+    $('#qHint').textContent = 'اتجاه القبلة ' + ar(Math.round(QB.brg)) + ' درجة من الشمال باتجاه عقارب الساعة. اضغط «تشغيل البوصلة» ليدور السهم مع جوالك.';
+    $('#qOk').classList.add('hidden'); $('#qb').classList.remove('on'); return;
+  }
+  $('#dial').style.transform = `rotate(${-heading}deg)`;
+  let diff = ((QB.brg - heading + 540) % 360) - 180;   // -180..180
+  const ok = Math.abs(diff) <= 4;
+  $('#qb').classList.toggle('on', ok); $('#qOk').classList.toggle('hidden', !ok);
+  $('#qDeg').textContent = ok ? '✓' : ar(Math.abs(Math.round(diff))) + '°';
+  $('#qHint').textContent = ok ? 'استقبل القبلة وصلِّ، تقبّل الله.' : (diff > 0 ? 'استدر يميناً حتى تصبح الكعبة أعلى الدائرة' : 'استدر يساراً حتى تصبح الكعبة أعلى الدائرة');
+  if (ok && !wasAligned && navigator.vibrate) navigator.vibrate(40);
+  wasAligned = ok;
+}
+function onOrient(e){
+  let h = null;
+  if (typeof e.webkitCompassHeading === 'number') h = e.webkitCompassHeading;
+  else if (e.absolute && typeof e.alpha === 'number') h = 360 - e.alpha;
+  if (h == null) return;
+  const so = (screen.orientation && screen.orientation.angle) || window.orientation || 0;
+  h = (h + so + 360) % 360;
+  if (heading == null) heading = h;
+  else { const d = ((h - heading + 540) % 360) - 180; heading = (heading + d*0.3 + 360) % 360; }  // تنعيم الحركة
+  updateQibla();
+}
+async function startCompass(){
+  try {
+    if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function'){
+      const r = await DeviceOrientationEvent.requestPermission();
+      if (r !== 'granted' && /iphone|ipad|ipod/i.test(navigator.userAgent)){ toast('لازم تسمح للتطبيق باستخدام حساس الحركة حتى تعمل البوصلة'); return; }
+    }
+  } catch(e){}
+  if (!('DeviceOrientationEvent' in window)){ toast('جهازك لا يدعم البوصلة، استخدم الدرجة المكتوبة'); return; }
+  compassOn = true; $('#qStart').classList.add('hidden');
+  window.addEventListener('deviceorientationabsolute', onOrient);
+  window.addEventListener('deviceorientation', onOrient);
+  setTimeout(()=>{ if (heading == null && compassOn){ toast('لم نستطع قراءة البوصلة على هذا الجهاز، استخدم الدرجة المكتوبة'); stopCompass(); renderQibla(); } }, 3500);
+}
+function stopCompass(){
+  compassOn = false; heading = null; wasAligned = false;
+  window.removeEventListener('deviceorientationabsolute', onOrient);
+  window.removeEventListener('deviceorientation', onOrient);
+}
+
 /* ================= SETTINGS ================= */
 function applyTheme(){
   if (!S || S.theme==='auto') document.documentElement.removeAttribute('data-theme');
@@ -1129,7 +1323,7 @@ function syncSettings(){
   syncCitySel();
   $('#pAv').textContent = initial(ME.name); $('#pName').textContent = ME.name; $('#pUser').textContent = '@' + ME.user;
   $('#sMethod').value = S.method; $('#sAsr').value = String(S.asr);
-  $('#sNotify').checked = !!S.notify; $('#sSound').checked = !!S.sound; $('#sPre').value = String(S.pre); $('#sTheme').value = S.theme;
+  $('#sNotify').checked = !!S.notify; $('#sSound').value = S.soundMode || (S.sound ? 'chime' : 'none'); $('#sPre').value = String(S.pre); $('#sTheme').value = S.theme;
   $('#adjBox').innerHTML = FIVE.map(k=>`<div class="adj"><span>${NAMES[k]}</span>
     <div class="step"><button data-adj="${k}" data-d="1" aria-label="زيادة دقيقة">+</button><output class="num">${S.adj[k]===0?'٠':(S.adj[k]>0?'+':'−')+ar(Math.abs(S.adj[k]))} د</output><button data-adj="${k}" data-d="-1" aria-label="نقص دقيقة">−</button></div></div>`).join('');
   const ios = /iphone|ipad|ipod/i.test(navigator.userAgent);
@@ -1147,7 +1341,7 @@ async function share(){
 }
 
 /* ================= NAV ================= */
-const VIEWS = ['home','adhkar','wird','me'];
+const VIEWS = ['home','adhkar','wird','qibla','me'];
 function show(v){
   if (!VIEWS.includes(v)) v = 'home';
   $$('.view').forEach(x=>x.classList.toggle('on', x.id==='v-'+v));
@@ -1157,6 +1351,7 @@ function show(v){
   if (v==='adhkar') renderAdhkar();
   if (v==='wird') renderWird();
   if (v==='me') syncSettings();
+  if (v==='qibla') renderQibla(); else if (compassOn){ stopCompass(); }
   window.scrollTo(0,0);
 }
 function refreshAll(){ renderHeader(); renderHome(); renderAdhkar(); renderWird(); syncSettings(); }
@@ -1180,6 +1375,8 @@ $('#app').addEventListener('click', e=>{
   const act = e.target.closest('[data-act]'); if (!act) return;
   switch (act.dataset.act){
     case 'locate': locate(); break;
+    case 'previewAdhan': unlockAudio(); playAdhan('dhuhr', 'الظهر', true); break;
+    case 'compass': startCompass(); break;
     case 'enableNotify': enableNotify(); break;
     case 'testNotify': notify('تجربة تنبيه الأذان', 'هكذا سيظهر لك التنبيه عند دخول وقت الصلاة', 'test'); break;
     case 'resetAdhkar': S.adhkar[adMode] = {}; save(); renderAdhkar(); break;
@@ -1202,7 +1399,7 @@ $('#placeBtn').addEventListener('click', ()=>show('me'));
 $('#sMethod').addEventListener('change', e=>{ S.method = e.target.value; save(); computeDays(); });
 $('#sAsr').addEventListener('change', e=>{ S.asr = +e.target.value; save(); computeDays(); });
 $('#sNotify').addEventListener('change', e=>{ if (e.target.checked) enableNotify(); else { S.notify=false; save(); } });
-$('#sSound').addEventListener('change', e=>{ S.sound = e.target.checked; save(); });
+$('#sSound').addEventListener('change', e=>{ S.soundMode = e.target.value; S.sound = e.target.value!=='none'; save(); });
 $('#sPre').addEventListener('change', e=>{ S.pre = +e.target.value; save(); });
 $('#sTheme').addEventListener('change', e=>{ S.theme = e.target.value; save(); applyTheme(); });
 $('#wPpd').addEventListener('change', e=>{ S.wird.ppd = +e.target.value; save(); renderWird(); });
